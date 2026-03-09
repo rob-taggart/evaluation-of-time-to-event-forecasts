@@ -7,3 +7,5 @@ Code and data to generate results and plots from the paper "On the evaluation of
 - `kurnel_timeseries.ipynb` and `kurnell_recalibration.ipynb` contain code used to generate results for the Kurnell time-to-strong-wind forecasts (Section 4.2 of the paper).
 - `tte.py` contains code for scoring rules used in Sections 2 and 3 of the paper. Of particular interest is code for the threshold-weighted CRPS when the predictive distribution is a gamma distribution.
 - `data` contains forecast and observation data used by the notebooks.
+
+Acknowledgement: This code was reviewed by Nicholas Loveday.
