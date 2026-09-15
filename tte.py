@@ -91,7 +91,7 @@ def twcrps_gamma(alpha, beta, loc, obs, tau):
         alpha: shape parameter
         beta: rate parameter
         loc: location parameter
-        obs: the observations (i.e. t of Taggart et al (2026) Eq 36)
+        obs: the observations
         tau: the right-censoring time
         
     Returns:
@@ -114,7 +114,7 @@ def _crps_gamma(alpha, beta, obs):
     Inputs are array like. If some are xr.DataArray, then `alpha` must also be 
     xr.DataArray, arrays must be broadcast prior to input and remaining arguments be float.
     
-    Formula from Section 3, Scheuerer, Moller 2015, reproduced in Taggart et al (2026) Eq 34.
+    Formula from Section 3, Scheuerer & Moller (2015).
     """
     result = obs * (2 * gamma.cdf(obs, alpha, scale=1/beta) - 1)
     result -= alpha * (2 * gamma.cdf(obs, alpha + 1, scale=1/beta) - 1) / beta
@@ -132,8 +132,7 @@ def crps_gamma(alpha, beta, loc, obs):
     Calculates the CRPS for the gamma distribution with shape parameter `alpha`,
     rate parameter `beta` and location parameter `loc`.
     
-    See formula from Section 3, Scheuerer, Moller 2015, reproduced in Taggart et al (2026) Eq 34
-    for the case when loc=0.
+    See formula from Section 3, Scheuerer & Moller (2015).
     """
     result1 = _crps_gamma(alpha, beta, obs - loc)
     result2 = loc - obs + _crps_gamma(alpha, beta, obs * 0)
